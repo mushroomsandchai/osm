@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: airflow-postgres
+    networks:
+      - airflow-net
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  airflow:
+    build: .
+    container_name: airflow
+    user: "${AIRFLOW_UID:-50000}:0"
+    networks:
+      - airflow-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./dbt:/opt/airflow/dbt
+      - ./spark:/spark/
+      - "${LOCAL_GCS_JSON_CREDENTIALS_PATH}:${CONTAINER_JSON_CREDENTIALS_PATH}.cred.json"
+    ports:
+      - "8080:8080"   # airflow
+      - "4040:4040"   # spark web ui
+      - "8082:8082"   # dbt docs
+      - "8501:8501"   # streamlit
+    command:
+      - bash
+      - -c
+      - |
+          cd $$DBT_PROJECT_PATH &&
+          $$DBT_VIRTUAL_ENVIRONMENT_PATH deps &&
+          $$DBT_VIRTUAL_ENVIRONMENT_PATH parse || true
+          exec airflow standalone
+
+volumes:
+  postgres_data:
+
+networks:
+  airflow-net:
+    driver: bridge
