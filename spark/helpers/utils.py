@@ -12,10 +12,10 @@ def get_lon(lat_lon):
 def h3_res_9(lat, lon):
     return h3.latlng_to_cell(float(lat), float(lon), 9)
 
-def h3_res_8(lat, lon, res):
+def h3_res_8(lat, lon):
     return h3.latlng_to_cell(float(lat), float(lon), 8)
 
-def h3_res_7(lat, lon, res):
+def h3_res_7(lat, lon):
     return h3.latlng_to_cell(float(lat), float(lon), 7)
 
 
