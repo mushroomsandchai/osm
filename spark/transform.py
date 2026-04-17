@@ -19,7 +19,9 @@ df = spark.read.parquet('/spark/files/*/')
 df = df.filter(df.amenity.isNotNull() | df.shop.isNotNull() | df.leisure.isNotNull()) \
     .withColumn("lat", lat("coordinates")) \
     .withColumn("lon", lon("coordinates")) \
-    .withColumn("h3_res_9", h3_cell(F.col('lat'), F.col('lon'))) \
+    .withColumn("h3_res_9", h3_cell(F.col('lat'), F.col('lon'), 9)) \
+    .withColumn("h3_res_8", h3_cell(F.col('lat'), F.col('lon'), 8)) \
+    .withColumn("h3_res_7", h3_cell(F.col('lat'), F.col('lon'), 7)) \
     .withColumn('amenity_score', score(F.col('amenity'))) \
     .withColumn('typical_intervals', fetch_hours(F.col('opening_hours'))) \
     .drop("opening_hours", "coordinates")

@@ -9,8 +9,8 @@ def get_lat(lat_lon):
 def get_lon(lat_lon):
     return lat_lon.split(',')[0].lstrip('[')
 
-def h3_res_9(lat, lon):
-    return h3.latlng_to_cell(float(lat), float(lon), 9)
+def h3_res_9(lat, lon, res):
+    return h3.latlng_to_cell(float(lat), float(lon), res)
 
 
 def parse_opening_hours(oh_string):
