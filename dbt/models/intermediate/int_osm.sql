@@ -1,3 +1,4 @@
+{{ config(materialized = 'table') }}
 with ids as (
     select
         {{ dbt_utils.generate_surrogate_key([
@@ -23,4 +24,3 @@ select
 from
     ids
 qualify row_number() over (partition by unique_id order by closing_hour desc, opening_hour) = 1
-  
