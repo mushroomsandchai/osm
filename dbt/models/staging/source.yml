@@ -1,0 +1,6 @@
+sources:
+  - name: raw
+    database: "{{ env_var('PROJECT') }}"  
+    schema:  "{{ env_var('DATASET') }}"
+    tables:
+      - name: raw_osm
