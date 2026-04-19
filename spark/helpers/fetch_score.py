@@ -39,9 +39,9 @@ CATEGORY_KEYWORDS = {
 }
 
 WEIGHTS = {
-    "healthcare": 1, "food_access": 0.9, "emergency": 0.9,
-    "education": 0.8, "financial": 0.6, "transport": 0.5,
-    "green_space": 0.8, "food_and_drink": 0.2,
+    "healthcare": 1, "food_access": 0.9, "emergency": 0.7,
+    "education": 0.8, "financial": 0.6, "transport": 0.75,
+    "green_space": 0.78, "food_and_drink": 0.2,
 }
 
 def score_tag(tag: str | None) -> float | None:
