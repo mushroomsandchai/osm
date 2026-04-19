@@ -30,8 +30,6 @@ This project builds a fully automated data pipeline that:
 | Dashboard | Streamlit, pydeck (`H3HexagonLayer`) |
 | Runtime | Docker + Docker Compose |
 
----
-
 ## Repository Structure
 
 ```
@@ -84,8 +82,6 @@ osm/
 ├── docker-compose.yml
 └── up.sh                              # One-command bootstrap
 ```
-
----
 
 ## How It Works
 
@@ -141,8 +137,6 @@ DuckDB projects only the 6 needed fields (`name`, `amenity`, `shop`, `leisure`, 
 
 **6. Dashboard** — Streamlit serves two tabs: an amenity score map with per-category checkboxes and a retail density heat map. Both use pydeck `H3HexagonLayer` over a dark-matter CARTO basemap. The dashboard ships with fallback CSVs so it's usable before the first pipeline run.
 
----
-
 ## Setup
 
 ### Prerequisites
@@ -191,8 +185,6 @@ Visit `http://localhost:8080`, log in with the printed credentials, and trigger 
 | Streamlit | http://localhost:8501 |
 | Spark Web UI | http://localhost:4040 |
 
----
-
 ## Dashboard
 
 The Streamlit dashboard has two views:
@@ -202,8 +194,7 @@ The Streamlit dashboard has two views:
 ![osm amenity score h9](images/amenity_score_h9.jpg)
 
 **Retail Density** — Each H3 res-7 hexagon (~5 km²) is coloured by shop count on a log-normalised scale (yellow → red → purple). Hover for raw count and density label.
+
 ![osm retail density](images/retail_density_h7.jpg)
 
 Both views fall back to bundled CSVs if BigQuery is unavailable.
-
----
