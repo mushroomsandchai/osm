@@ -16,7 +16,7 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  eia:
+  osm:
     staging:
       +materialized: view
     intermediate:
