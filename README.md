@@ -4,6 +4,8 @@ A end-to-end data engineering pipeline that scores UK neighbourhoods on walkable
 
 The pipeline downloads PBF extracts from Geofabrik, converts and projects them through DuckDB, transforms them with PySpark (H3 spatial indexing, opening hours parsing, liveability scoring), loads the results to BigQuery, runs a dbt transformation layer, and surfaces everything in a Streamlit dashboard with interactive H3 hex maps.
 
+[Link to dashboard - Streamlit Cloud](https://osmaps.streamlit.app/)
+
 ## Problem
 
 The **15-minute city** is an urban planning concept with a simple premise: every resident should be able to reach their daily needs - healthcare, groceries, schools, green space, public transport all within a 15-minute walk or cycle from their home. It's a measurable standard for what makes a neighbourhood genuinely liveable, and it has real consequences: where people choose to live, how city budgets get allocated, and which communities are being underserved.
@@ -196,8 +198,11 @@ Visit `http://localhost:8080`, log in with the printed credentials, and trigger 
 The Streamlit dashboard has two views:
 
 **Amenity Score** — Each H3 res-9 hexagon (~0.1 km²) is coloured by its gross liveability score (weighted sum of amenity counts). Category checkboxes let you filter to specific systems. Hover for per-category breakdown and score.
+![osm amenity score](images/amenity_score.jpg)
+![osm amenity score h9](images/amenity_score_h9.jpg)
 
 **Retail Density** — Each H3 res-7 hexagon (~5 km²) is coloured by shop count on a log-normalised scale (yellow → red → purple). Hover for raw count and density label.
+![osm retail density](images/retail_density_h7.jpg)
 
 Both views fall back to bundled CSVs if BigQuery is unavailable.
 
