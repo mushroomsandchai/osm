@@ -28,5 +28,5 @@ def fetch_table(table_name, csv_path):
         try:
             df = pd.read_csv(f'/opt/airflow/streamlit/{csv_path}')
         except:
-            df = pd.read_csv(csv_path)
+            df = pd.read_csv(f'/workspaces/osm/streamlit/{csv_path}')
         return df, "CSV"
