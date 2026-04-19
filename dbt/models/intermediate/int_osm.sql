@@ -12,6 +12,9 @@ with ids as (
         latitude,
         longitude,
         amenity_score,
+        res_7,
+        res_8,
+        res_9,
         cast(split(open_hours, '-')[safe_offset(0)] as numeric) as opening_hour,
         cast(split(open_hours, '-')[safe_offset(1)] as numeric) as closing_hour
     from
