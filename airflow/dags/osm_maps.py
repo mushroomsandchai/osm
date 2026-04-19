@@ -64,7 +64,7 @@ def osm_pipeline():
 
     @task.bash
     def clean():
-        return("echo 'This will remove stary parquet files in future.'")
+        return("rm -rf /spark/files /spark/transformed")
 
 
     countries = get_countries()

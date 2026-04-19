@@ -25,8 +25,9 @@ RUN pip install --no-cache-dir --upgrade \
     pyspark==3.5.1 \
     h3 \
     opening-hours-py \
-    streamlit \
-    altair
+    streamlit>=1.35.0 \
+    pydeck>=0.9.0 \
+    folium
 
 RUN python -m venv /opt/airflow/.dbt_venv && \
     /opt/airflow/.dbt_venv/bin/pip install --no-cache-dir \

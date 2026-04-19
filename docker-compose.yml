@@ -32,16 +32,17 @@ services:
       - ./airflow/logs:/opt/airflow/logs
       - ./dbt:/opt/airflow/dbt
       - ./spark:/spark/
+      - ./streamlit:/opt/airflow/streamlit
       - "${LOCAL_GCS_JSON_CREDENTIALS_PATH}:${CONTAINER_JSON_CREDENTIALS_PATH}.cred.json"
     ports:
       - "8080:8080"   # airflow
       - "4040:4040"   # spark web ui
-      - "8082:8082"   # dbt docs
       - "8501:8501"   # streamlit
     command:
       - bash
       - -c
       - |
+          streamlit run /opt/airflow/streamlit/app.py &
           cd $$DBT_PROJECT_PATH &&
           $$DBT_VIRTUAL_ENVIRONMENT_PATH deps &&
           $$DBT_VIRTUAL_ENVIRONMENT_PATH parse || true
