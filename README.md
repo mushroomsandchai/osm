@@ -4,7 +4,7 @@ A end-to-end data engineering pipeline that scores UK neighbourhoods on walkable
 
 The pipeline downloads PBF extracts from Geofabrik, converts and projects them through DuckDB, transforms them with PySpark (H3 spatial indexing, opening hours parsing, liveability scoring), loads the results to BigQuery, runs a dbt transformation layer, and surfaces everything in a Streamlit dashboard with interactive H3 hex maps.
 
-[Link to dashboard - Streamlit Cloud](https://osmaps.streamlit.app/)
+[Link to Streamlit Cloud dashboard](https://osmaps.streamlit.app/)
 
 ## Problem
 
