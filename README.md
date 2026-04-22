@@ -1,6 +1,6 @@
 # 15-Minute City — OSM Liveability Pipeline
 
-A end-to-end data engineering pipeline that scores UK neighbourhoods on walkable access to essential amenities, using raw OpenStreetMap data as the source of truth.
+A end-to-end data engineering pipeline that scores neighbourhoods on walkable access to essential amenities, using raw OpenStreetMap data as the source of truth.
 
 The pipeline downloads PBF extracts from Geofabrik, converts and projects them through DuckDB, transforms them with PySpark (H3 spatial indexing, opening hours parsing, liveability scoring), loads the results to BigQuery, runs a dbt transformation layer, and surfaces everything in a Streamlit dashboard with interactive H3 hex maps.
 
